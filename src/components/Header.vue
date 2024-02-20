@@ -2,7 +2,7 @@
   <header>
     <div class="container header">
       <div class="area_logo_header">
-        <router-link to="/vue-products" class="logo-link">
+        <router-link to="/" class="logo-link">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/640px-Logo_NIKE.svg.png" alt="logo" class="logo" />
         </router-link>
       </div>
