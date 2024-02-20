@@ -8,7 +8,7 @@
       </div>
       <nav class="area_nav_header">
         <ul class="list_nav_header">
-          <li><a href="#" class="nav-link">Create</a></li>
+          <li><a href="/vue-products/add" class="nav-link">Create</a></li>
         </ul>
       </nav>
     </div>

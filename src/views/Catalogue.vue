@@ -7,13 +7,15 @@
         placeholder="start typing"
         class="search"
         v-model="searchTerm"
-        @input="handleSearchChange"
     >
     <select
         id="exampleSelect"
         name="exampleSelect"
         class="select"
+        v-model="sortOption"
+        @change="sortProducts"
     >
+      <option value="default" selected>Default sorting</option>
       <option
           value="rating"
       >
@@ -47,50 +49,41 @@
   </div>
 </template>
 
-<script>
-import { defineComponent} from "vue";
-export default defineComponent({
-  name: 'CatalogueView'
-})
-</script>
-
 <script setup>
-  import {onMounted, ref, watch} from "vue";
-  import { productsStore } from "@/stores/products";
-  import { useRouter} from "vue-router";
+import { ref, computed } from "vue";
+import { productsStore } from "@/stores/products";
+import { useRouter } from "vue-router";
 
-  const store = productsStore();
-  const router = useRouter();
+const store = productsStore();
+const router = useRouter();
+const searchTerm = ref("");
+const sortOption = ref("default");
 
-  const searchTerm = ref("");
-  const filteredProducts = ref([]);
+const sortProducts = () => {
+  const sorted = [...store.products];
 
-
-  onMounted(async () => {
-    await logProducts();
-  });
-  const logProducts = async () => {
-    await store.fetchProductsFromDB();
-    updateFilteredProducts();
-    console.log('mount>>>>>>>>>>>>');
-  };
-
-  const updateFilteredProducts = () => {
-    filteredProducts.value = store.products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.value.toLowerCase())
-    );
-  };
-
-  const handleSearchChange = () => {
-    updateFilteredProducts();
-  };
-
-  watch(searchTerm, handleSearchChange);
-
-  const goToProductPage = (id) => {
-    router.push({name: 'ProductView', params: { id }})
+  switch (sortOption.value) {
+    case "rating":
+      sorted.sort((a, b) => b.rating - a.rating);
+      break;
+    case "title":
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
+      break;
   }
 
+  return sorted;
+};
+
+const filteredProducts = computed(() => {
+  const sorted = sortProducts();
+  return sorted.filter((product) =>
+      product.title.toLowerCase().includes(searchTerm.value.toLowerCase())
+  );
+});
+
+const goToProductPage = (id) => {
+  router.push({ name: 'ProductView', params: { id } });
+};
 </script>
 
 
@@ -105,6 +98,10 @@ export default defineComponent({
   gap: 18px;
   align-items: center;
   margin-bottom: 12px;
+
+  @media (max-width: 450px) {
+    grid-template-columns: repeat(1, 4fr);
+  }
 }
 
 .select, .search {
@@ -116,6 +113,18 @@ export default defineComponent({
   display: grid;
   grid-template-columns: repeat(4, 3fr);
   gap: 10px;
+
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(3, 4fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 4fr);
+  }
+
+  @media (max-width: 450px) {
+    grid-template-columns: repeat(1, 4fr);
+  }
 }
 
 .product {
