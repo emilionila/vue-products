@@ -8,7 +8,8 @@
       </div>
       <nav class="area_nav_header">
         <ul class="list_nav_header">
-          <li><a href="/vue-products/add" class="nav-link">Create</a></li>
+          <li>
+            <router-link to="/add" class="nav-link">Create</router-link></li>
         </ul>
       </nav>
     </div>
