@@ -25,7 +25,6 @@
 </script>
 
 <style scoped>
-
 li {
   list-style: none;
 }
@@ -70,5 +69,4 @@ li {
   text-decoration: none;
   text-transform: uppercase;
 }
-
 </style>
