@@ -99,6 +99,13 @@ const closeModal = () => {
   font-weight: bold;
   color: #fff;
   border: 1px solid #ffbf4b;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.edit-btn:hover {
+  background-color: #fff;
+  color: #ffbf4b;
 }
 
 .delete-btn {
@@ -107,5 +114,12 @@ const closeModal = () => {
   color: #fff;
   font-weight: bold;
   border: 1px solid #ff2424;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+  background-color: #fff;
+  color: #ff2424;
 }
 </style>

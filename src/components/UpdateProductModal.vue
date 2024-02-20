@@ -140,7 +140,6 @@ const updateProduct = async () => {
 
 <style scoped>
 .modal {
-  //display: block;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -154,7 +153,7 @@ const updateProduct = async () => {
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 20px auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -184,13 +183,27 @@ const updateProduct = async () => {
   background-color: #366b16;
   padding: 10px 26px;
   border: 1px solid #366b16;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .cancel-editing-btn {
+  cursor: pointer;
   padding: 10px 26px;
   background-color: #ff2424;
   color: #fff;
   font-weight: bold;
   border: 1px solid #ff2424;
+  transition: all 0.3s ease-in-out;
+}
+
+.edit-product-btn:hover {
+  color: #366b16;
+  background-color: #fff;
+}
+
+.cancel-editing-btn:hover {
+  background-color: #fff;
+  color: #ff2424;
 }
 </style>

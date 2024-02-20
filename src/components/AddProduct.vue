@@ -144,5 +144,12 @@ const createProduct = async () => {
   background-color: #4769fc;
   padding: 8px 16px;
   border: 1px solid #4769fc;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.submit:hover {
+  color: #4769fc;
+  background-color: #fff;
 }
 </style>
